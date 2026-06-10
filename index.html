@@ -275,7 +275,9 @@ canvas{max-height:190px}
     <div id="aerr"></div>
     <div class="fg"><label>Email</label><input type="email" id="aEmail" placeholder="tumail@ejemplo.com" inputmode="email" autocomplete="email"></div>
     <div class="fg"><label>Contraseña</label><input type="password" id="aPass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doAuth()"></div>
-    <button class="btn bp" id="aBtn" onclick="doAuth()">Ingresar</button>
+    <button class="btn bp" id="aBtn" onclick="doAuth()">Ingresar<button id="btn-instalar-pwa" class="hidden w-full mt-4 bg-green-600 text-white p-2 rounded hover:bg-green-700 transition">
+    Instalar Aplicación
+</button></button>
     <div style="text-align:center;color:var(--mu);font-size:12px;margin:14px 0 4px">— ó —</div>
     <button class="view-btn" onclick="enterViewer()">👁 Ver sin login (solo lectura)</button>
   </div>
