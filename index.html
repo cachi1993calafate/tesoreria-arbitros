@@ -1421,6 +1421,35 @@ function noPWA(){
   document.getElementById('pwaBanner').style.display='none';
   localStorage.setItem('pwa_no','1');
 }
+  // --- LÓGICA PARA LA INSTALACIÓN DE LA PWA ---
+let deferredPrompt;
+const btnInstalar = document.getElementById('btn-instalar-pwa');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (btnInstalar) {
+        btnInstalar.classList.remove('hidden');
+    }
+});
+
+if (btnInstalar) {
+    btnInstalar.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`El usuario eligió: ${outcome}`);
+        deferredPrompt = null;
+        btnInstalar.classList.add('hidden');
+    });
+}
+
+window.addEventListener('appinstalled', () => {
+    if (btnInstalar) {
+        btnInstalar.classList.add('hidden');
+    }
+    deferredPrompt = null;
+});
 </script>
 </body>
 </html>
